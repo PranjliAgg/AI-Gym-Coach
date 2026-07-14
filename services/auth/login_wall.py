@@ -20,7 +20,7 @@ def render_login_wall():
         
         user = get_or_create_user(username)
         
-        st.session_state["user_id"] = user["user_id"]
+        st.session_state["user_id"] = user["id"]
         st.session_state["username"] = user["username"]
 
         st.rerun()
