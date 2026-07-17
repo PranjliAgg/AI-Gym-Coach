@@ -214,6 +214,9 @@ class VideoProcessorClass(VideoProcessorBase):
             if detector:
                 metrics = detector.process(landmarks)
 
+                if "reps" not in metrics or metrics["reps"] is None:
+                    metrics["reps"] = 0
+
                 metrics["pose_detected"] = True
 
                 self._draw_overlays(image, metrics, ex_type)

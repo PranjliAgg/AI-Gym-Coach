@@ -24,7 +24,10 @@ def sync_metrics_update(context):
     if not latest_metrics:
         return
     
-    reps = latest_metrics.get("reps")
+    reps = latest_metrics.get("reps", 0)
+    if reps is None:
+        reps=0
+        
     st.session_state.reps = reps
 
     fields = METRICS_FIELDS.get(exercise)
