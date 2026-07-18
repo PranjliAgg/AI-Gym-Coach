@@ -5,24 +5,43 @@ from services.persistence.exercise_repository import get_or_create_user
 def render_login_wall():
     if st.session_state.get("user_id") is not None:
         return True
-    
-    st.title("AI Real time Gym Trainer")
-    st.markdown("### Welcome! Please enter a username to start.")
 
-    with st.form("login_form", clear_on_submit=False):
-        username = st.text_input("Name", placeholder="John Doe")
-        submit_button = st.form_submit_button("Start session", width="stretch")
+    col1, col2, col3 = st.columns([1, 1.4, 1])
 
-    if submit_button:
-        if not username:
-            st.error("Name cannot be empty.")
-            return False
-        
-        user = get_or_create_user(username)
-        
-        st.session_state["user_id"] = user["id"]
-        st.session_state["username"] = user["username"]
+    with col2:
+        with st.container(border=True, key="login-container"):
 
-        st.rerun()
+            st.markdown(
+                """
+                <div class="login-header">
+                    <h1>🏋️ AI Gym Coach</h1>
+                    <p>Enter your name to start your training session.</p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+            with st.form("login_form", clear_on_submit=False):
+                username = st.text_input(
+                    "Name",
+                    placeholder="John Doe"
+                )
+
+                submit_button = st.form_submit_button(
+                    "Start Session",
+                    width="stretch"
+                )
+
+            if submit_button:
+                if not username:
+                    st.error("Name cannot be empty.")
+                    return False
+
+                user = get_or_create_user(username)
+
+                st.session_state["user_id"] = user["id"]
+                st.session_state["username"] = user["username"]
+
+                st.rerun()
 
     return False

@@ -1,192 +1,217 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
+
 def theme():
-   st.markdown(
-    """
+    st.markdown("""
     <style>
 
-        .stApp {
-        background-color: #0A0D14;
-        color: #fff;
-        }
+    /* ===== GLOBAL ===== */
+    .stApp {
+        background: radial-gradient(circle at top left, #111827, #0B0F14);
+        color: #E5E7EB;
+        font-family: 'Inter', sans-serif;
+    }
+        
+                
+    /* Hide top toolbar */
+    header[data-testid="stHeader"] {
+        display: none;
+    }
+    
+    .block-container {
+        padding-top: 1.5rem;
+    }
+                
+    .hero {
+        padding:25px;
+        border-radius:24px;
+        background: linear-gradient(135deg, rgba(255,104,88,0.15), rgba(59,130,246,0.10));
+        border: 1px solid rgba(255,255,255,0.08);
+        margin-bottom:25px;
+    }
 
-        [data-testid="stSidebar"] {
-        background-color: #111520;
-        }
+    .hero p {
+        font-size:18px;
+        color:#94A3B8;
+    }
 
-        /* =========================================================
-        TYPOGRAPHY
-        ========================================================= */
+    /* Login Card Gradient */
+    .st-key-login-container {
+        background: linear-gradient(
+            135deg,
+            rgba(255,104,88,0.15),
+            rgba(59,130,246,0.08)
+        ) !important;
 
-        .block-container,
-        .block-container * {
-        font-family: 'AdobeClean', sans-serif !important;
-        }
+        border-radius: 24px !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
 
-        /* =========================================================
-        LAYOUT
-        ========================================================= */
+        padding: 25px !important;
 
-        .block-container {
-        padding: 50px 3rem !important;
-        max-width: 750px !important;
-        }
+        backdrop-filter: blur(12px);
+    }           
+                
 
-        /* =========================================================
-        BUTTONS
-        ========================================================= */
+    /* ===== MAIN CONTAINER ===== */
+    .block-container {
+        padding: 2rem 3rem;
+    }
 
-        button,
-        .stButton button,
-        .stDownloadButton button,
-        .MuiBox-root button {
-        background-color: #181D2A !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 0 !important;
-        font-family: 'AdobeClean', sans-serif !important;
-        }
+    /* ===== HEADINGS ===== */
+    h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: white;
+    }
 
-        /* =========================================================
-        INPUTS & TEXT ELEMENTS
-        ========================================================= */
+    h2, h3 {
+        color: #F3F4F6;
+        font-weight: 600;
+    }
+                
+    .empty-card {
+        margin-top:32px;
+        margin-bottom:32px;
+        padding:50px 30px;
+        text-align:center;
+        background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0.02)
+        );
+        border-radius:24px;
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter:blur(15px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
 
-        input,
-        textarea,
-        p,
-        li,
-        code,
-        [data-testid="stSelectbox"] > div > div,
-        [data-baseweb="select"] > div,
-        [data-baseweb="popover"] ul,
-        [data-baseweb="menu"] {
-        border-radius: 0 !important;
-        font-family: 'AdobeClean', sans-serif !important;
-        }
 
-        /* =========================================================
-        METRICS
-        ========================================================= */
+    .empty-card h2 {
+        color:#F9FAFB;
+        font-size:28px;
+        margin-bottom:12px;
+    }
 
-        [data-testid="stMetric"] {
-        background-color: #181D2A;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 1rem 1.2rem;
-        border-radius: 0;
-        }
 
-        [data-testid="stMetric"] div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        }
+    .empty-card p {
+        color:#94A3B8;
+        font-size:16px;
+        line-height:1.6;
+    }
 
-        [data-testid="stMetricValue"] {
-        font-size: 1.5rem !important;
-        font-weight: 400 !important;
-        }
 
-        [data-testid="stMetricLabel"] {
-        font-size: 15px !important;
-        opacity: 0.6;
-        }
+    .empty-icon {
+        font-size:64px;
+        margin-bottom:15px;
+    }
 
-        [data-testid="stMetric"] div label p {
-        font-size: 16px !important;
-        }
 
-        /* =========================================================
-        CONTAINERS / CARDS
-        ========================================================= */
+    .empty-tip {
+        display:inline-block;
+        margin-top:25px;
+        padding:10px 18px;
+        border-radius:50px;
+        background: rgba(255,104,88,0.12);
+        color:#FF6858;
+        font-weight:600;
+    }
 
-        .stContainer,
-        .stExpander,
-        .stTabs,
-        .stColumns,
-        .stPopover,
-        .stAlertContainer,
-        .stStatusContainer,
-        .stMetric,
-        .stTable,
-        .stDataFrame,
-        .stForm,
-        .stSelectbox,
-        [data-baseweb="select"] > div,
-        [data-testid="stForm"],
-        [data-testid="stMetric"],
-        [data-testid="stNumberInputContainer"],
-        [data-testid="stDataFrameColumnMenu"],
-        [data-testid="stHeadingWithActionElements"],
-        [data-testid="stCaptionContainer"] p,
-        [data-testid="stAlertContentInfo"] p,
-        [data-testid="stSidebarNavLink"],
-        [data-testid="stMarkdownContainer"] h3,
-        [data-baseweb="popover"],
-        [data-baseweb="menu"],
-        div[role="menu"],
-        div[role="menuitem"] {
-        border-radius: 0 !important;
-        font-family: 'AdobeClean', sans-serif !important;
-        }
+    /* ===== GLASS CARD EFFECT ===== */
+    .stContainer {
+        background: rgba(17, 24, 39, 0.6);
+        backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
 
-        /* =========================================================
-        DATAFRAME FIX
-        ========================================================= */
+    /* ===== INPUT ===== */
+    .stTextInput input {
+        background-color: rgba(17, 24, 39, 0.9);
+        color: white !important;
+        border: 1px solid #374151;
+        border-radius: 12px;
+        padding: 12px;
+        font-size: 14px;
+    }
 
-        .stDataFrame,
-        .stDataFrame div,
-        .stDataFrameGlideDataEditor {
-        border-radius: 0 !important;
-        font-family: 'AdobeClean', sans-serif !important;
-        }
+    .stTextInput input:focus {
+        border: 1px solid #FF6858 !important;
+        box-shadow: 0 0 0 2px rgba(255,104,88,0.3);
+    }
 
-        /* =========================================================
-        INTERACTIVE ELEMENTS
-        ========================================================= */
+    /* ===== BUTTONS ===== */
 
-        .stTextInput,
-        .stTextArea,
-        .stNumberInput,
-        .stSlider,
-        .stMultiselect,
-        .stRadio,
-        .stCheckbox,
-        .stToggle,
-        .stFileUploader,
-        .stColorPicker,
-        .stDateInput,
-        .stTimeInput,
-        .stCameraInput,
-        [data-testid="stTextInput"] > div,
-        [data-testid="stButton"] button,
-        [data-testid="stBaseButton-secondaryFormSubmit"],
-        [data-testid="stStatusWidget"] {
-        border-radius: 0 !important;
-        font-family: 'AdobeClean', sans-serif !important;
-        }
+    button[kind="primary"] {
+        background: #FF6858 !important;
+        color: white !important;
+        font-weight: 700;
+        border: none !important;
+        border-radius: 14px !important;
+        padding: 0.6rem 1.5rem;
+        transition: 0.2s ease;
+    }
 
-        /* =========================================================
-        MARKDOWN
-        ========================================================= */
+    button[kind="primary"] * {
+        color: white !important;
+    }
 
-        [data-testid="stMarkdownContainer"] strong {
-        font-family: 'AdobeClean', sans-serif !important;
-        }
+    button[kind="primary"]:hover {
+        background: #FF5545 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255,104,88,0.35);
+    }
 
-        /* =========================================================
-        FORM
-        ========================================================= */
+    button[kind="secondary"] {
+        background: linear-gradient(135deg, #F97316, #EF4444) !important;
+        color: #E5E7EB !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 14px !important;
+    }
 
-        .stForm {
-        margin-top: 2rem !important;
-        padding: 1.5rem 1rem !important;
-        background-color: #181D2A !important;
-        color: #fff;
-        } 
+    button[kind="secondary"] * {
+        color: #E5E7EB !important;
+    }
+
+    button[kind="secondary"]:hover {
+        background: rgba(255,104,88,0.1) !important;
+        border-color: #FF6858 !important;
+        color: #FF6858 !important;
+    }
+
+    /* ===== SIDEBAR ===== */
+    section[data-testid="stSidebar"] {
+        background: #0B0F14;
+        border-right: 1px solid #1F2937;
+    }
+
+    /* ===== METRIC CARDS ===== */
+    div[data-testid="stMetric"] {
+        background: rgba(17, 24, 39, 0.7);
+        border-radius: 14px;
+        padding: 12px;
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #374151;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #FF6858;
+    }
 
     </style>
     """, unsafe_allow_html=True)
-   
 
 
 
