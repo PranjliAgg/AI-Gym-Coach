@@ -16,7 +16,12 @@ def theme():
                 
     /* Hide top toolbar */
     header[data-testid="stHeader"] {
-        display: none;
+        height: 0;
+        background: transparent;
+    }
+
+    button[data-testid="stSidebarCollapsedControl"] {
+        display: block !important;
     }
     
     .block-container {
